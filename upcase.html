@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用例上传界面</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/jacky.css"> -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-table.css">
+  <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.css">
+  <script src="js/popper.min.js"></script>
+  <!-- <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.js"></script> -->
+  <script src="js/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  <script src="js/bootstrap-table.js"></script>
+  <script src="js/bootstrap-table-zh-CN.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/bootstrap-datetimepicker.js"></script>
+  <script src="js/bootstrap-dialog.js"></script>
+  <script src="js/setting.js"></script>
+  <script src="js/addcase.js"></script>
+  <style type="text/css">
+    html,body{width:100%;height:100%}
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand" href="#"><strong>测试系统</strong>
+                        <!-- <img src="image/wangwang.jpg" height="100%" /> -->
+                    </p>
+                </div>
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a class="icon-bar" href="#">SDK数据测试</a>
+                        </li>
+                    <!--     <li><a href="#">分类管理</a>
+                        </li>
+                        <li><a href="#">城市管理</a>
+                        </li>
+                        <li><a href="#">商品管理</a>
+                        </li>
+                        <li><a href="#">订单管理</a>
+                        </li> -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>欢迎您,admin</a>
+                        </li>
+                        <li><a href="#">安全退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="./upcase.html" class="list-group-item active">
+                      <span class="glyphicon glyphicon-align-left"></span>用例上传
+                    </a>
+                    <a href="./findcase.html" class="list-group-item">
+                    <!-- 小图标样式设置 -->
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>用例管理</a>
+                    <a href="./datacount.html" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>数据统计</a>
+                  <!--   <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户消费</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户增加</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户删除</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户注销</a> -->
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true">
+                    </span>个人设置</a>
+                </div>
+                <!--左边菜单栏-->
+                <div class="col-sm-10">
+                  <div class="col-md-12 column">
+      <div class="jumbotron">
+        <h2 style="margin-top: 0px">
+          欢迎来到用例上传界面
+        </h2>
+        <p style="font-size: 120%;">
+          使用方式：在下方填写对应的数据内容，并上传结尾为.XLS的EXCEL文件，具体用例的模板可以在下方下载后，根据里面的内容填写后再上传使用.<br>
+          请注意,每个输入框都为必填项，未填写的话不能成功上传哟~<br>
+          发现问题可随时反馈.
+        </p>
+        <p>
+           <a class="btn btn-primary btn-large" href="http://xxx.xxx.xx.xx:xxxx/case/downloadcase?id=0">下载用例上传模板</a>
+        </p>
+      </div>
+    </div>
+                   <div class="col-md-4 column">
+                      <form role="form">
+                        <div class="form-group">
+                           <label for="title">Title （用例名称）</label><input type="text" class="form-control" id="titleinput" />
+                        </div>
+                        <!-- <div class="form-group">
+                           <label for="deviceid">Device_id</label><input type="text" class="form-control" id="Deviceidinput" />
+                        </div>
+                        <div class="form-group">
+                           <label for="sql">Dana_sql</label><input type="text" class="form-control" id="sqlinput" />
+                        </div> -->
+                        <div class="form-group">
+                           <label for="filein">上传文件</label><input type="file" onchange="fileChange(this.id)" id="uploadinput" />
+                          <p class="help-block" style="color: red">
+                            上传文件为必要条件,且必须上传结尾为xls的文件.
+                          </p>
+                        </div>
+                         <button type="button" class="btn btn-primary" id="submit1">提交</button>
+                      </form>
+                    </div>
+                    <div class="col-md-4 column">
+                      <form role="form">
+                        <div class="form-group">
+                           <label for="sdkver">Sdk_version （SDK版本号）</label><input type="text" class="form-control" id="sdkinput" />
+                        </div>
+                      <!--   <div class="form-group">
+                           <label for="danaip">Dana_ip</label><input type="text" class="form-control" id="danaipinput" />
+                        </div> -->
+                      </form>
+                    </div>
+                    <div class="col-md-4 column">
+                      <form role="form">
+                        <div class="form-group">
+                           <label for="deviceid">Device_id （设备ID）</label><input type="text" class="form-control" id="Deviceidinput" />
+                        </div>
+                      <!--   <div class="form-group">
+                           <label for="danapwd">Dana_pwd</label><input type="text" class="form-control" id="danapwdinput" />
+                        </div> -->
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+          <!-- 底部页脚部分 -->
+ <div class="footer">
+     <p class="text-center">
+         2019 &copy; Copyright By Jacky.
+     </p>
+ </div>
+</body>
+</html>

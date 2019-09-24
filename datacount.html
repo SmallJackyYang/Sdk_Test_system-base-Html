@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>数据统计界面</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+ <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="css/bootstrap-table.css">
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.css">
+<script src="js/popper.min.js"></script>
+<!-- <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.js"></script> -->
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<script src="js/moment-with-locales.js"></script>
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-dialog.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/setting.js"></script>
+<script src="js/count.js"></script>
+
+
+<style type="text/css">
+    html,body{width:100%;height:100%}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-brand" href="javascript:;"><strong>测试系统</strong>
+                        <!-- <img src="image/wangwang.jpg" height="100%" /> -->
+                    </p>
+                </div>
+                <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a class="icon-bar" href="#">SDK数据测试</a>
+                        </li>
+                        <!-- <li><a href="#">分类管理</a> -->
+                       <!--  </li>
+                        <li><a href="#">城市管理</a>
+                        </li>
+                        <li><a href="#">商品管理</a>
+                        </li>
+                        <li><a href="#">订单管理</a>
+                        </li> -->
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>欢迎您,admin</a>
+                        </li>
+                        <li><a href="#">安全退出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="./upcase.html" class="list-group-item">
+                      <span class="glyphicon glyphicon-align-left"></span>用例上传
+                    </a>
+                    <a href="./findcase.html" class="list-group-item">
+                    <!-- 小图标样式设置 -->
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>用例管理</a>
+                    <a href="./datacount.html" class="list-group-item active">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>数据统计</a>
+                  <!--   <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户消费</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户增加</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户删除</a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+                    </span>VIP客户注销</a> -->
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true">
+                    </span>个人设置</a>
+                </div>
+                <!--左边菜单栏-->
+                <div class="col-sm-10">
+
+        		  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">系统运行时间</h3>
+                    </div>
+                    <div id = "time" class="panel-body" style="font-size: 115%;">
+                    
+                    </div>
+                  </div>
+                   <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用例执行成功率与失败率统计</h3>
+                    </div>
+                        <div class="panel-body" style="padding-bottom:0px;padding-left: 0px;padding-right: 0px;padding-top: 0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="color: SteelBlue;font-size: 120%;font-weight: bold;">查询条件</div>
+                                <form class="form-inline" role="form" id="submitform">
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="f1">用例ID</label>
+                                        <input type="text" id="serchcaseid" class="form-control" style="width: 150px" placeholder="请输入要搜索的用例id"> 
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="f2">SDK版本</label>
+                                        <input type="text" id="serchsdk" class="form-control" style="width: 180px" placeholder="请输入要搜索的SDK版本">  
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="f3">设备号</label>
+                                        <input type="text" id="serchdevice" class="form-control" style="width: 280px;" placeholder="请输入要搜索的设备号">    
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">  
+                                        <label>选择开始时间：</label>  
+                                        <!--指定 date标记-->  
+                                        <div class='input-group date' id='datetimepicker1'>  
+                                            <input type='text' class="form-control" style="width: 150px"/>  
+                                            <span class="input-group-addon">  
+                                            <span class="glyphicon glyphicon-calendar"></span>  
+                                            </span>  
+                                        </div>  
+                                    </div>
+                                    <div class="form-group">  
+                                        <label>选择结束时间：</label>  
+                                        <!--指定 date标记-->  
+                                        <div class='input-group date' id='datetimepicker2'>  
+                                            <input type='text' class="form-control" style="width: 150px"/>  
+                                            <span class="input-group-addon">  
+                                                <span class="glyphicon glyphicon-calendar"></span>  
+                                            </span>  
+                                        </div>  
+                                    </div>
+                                    <div class="form-group" style="margin-left: 35px;padding-bottom">
+                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn">查询</button>
+                                    </div>   
+                                </form>
+                        </div>
+                    </div>
+                        <div id="main" >
+                            <!-- <h2 id="result" style="padding-left: 150px;padding-top: 100px"></h2> -->
+                        </div>
+                    
+                  </div>
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">用例执行次数统计</h3>
+                    </div>
+                        <div class="panel-body" style="padding-bottom:0px;padding-left: 0px;padding-right: 0px;padding-top: 0px">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="color: SteelBlue;font-size: 120%;font-weight: bold;">查询条件</div>
+                                <form class="form-inline" role="form" id="submitform">
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="g1">用例ID</label>
+                                        <input type="text" id="serchcaseid2" class="form-control" style="width: 150px" placeholder="请输入要搜索的用例id"> 
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="g2">SDK版本</label>
+                                        <input type="text" id="serchsdk2" class="form-control" style="width: 180px" placeholder="请输入要搜索的SDK版本">  
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
+                                        <label for="g3">设备号</label>
+                                        <input type="text" id="serchdevice2" class="form-control" style="width: 280px;" placeholder="请输入要搜索的设备号">    
+                                    </div>
+                                    <div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">  
+                                        <label>选择开始时间：</label>  
+                                        <!--指定 date标记-->  
+                                        <div class='input-group date' id='datetimepicker1-2'>  
+                                            <input type='text' class="form-control" style="width: 150px"/>  
+                                            <span class="input-group-addon">  
+                                            <span class="glyphicon glyphicon-calendar"></span>  
+                                            </span>  
+                                        </div>  
+                                    </div>
+                                    <div class="form-group">  
+                                        <label>选择结束时间：</label>  
+                                        <!--指定 date标记-->  
+                                        <div class='input-group date' id='datetimepicker2-2'>  
+                                            <input type='text' class="form-control" style="width: 150px"/>  
+                                            <span class="input-group-addon">  
+                                                <span class="glyphicon glyphicon-calendar"></span>  
+                                            </span>  
+                                        </div>  
+                                    </div>
+                                    <div class="form-group" style="margin-left: 35px">
+                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn2">查询</button>
+                                    </div>   
+                                </form>
+                        </div>
+                    </div>
+                        <!-- <div id="main2"> -->
+                            <h3 id='result2' style='text-align:center;padding-bottom:20px'></h3>
+                        <!-- </div> -->
+                    
+                  </div>
+            	</div>
+
+       		</div>
+    	</div>
+          <!-- 底部页脚部分 -->
+ <div class="footer">
+     <p class="text-center">
+         2019 &copy; Copyright By Jacky.
+     </p>
+ </div>
+</body>
+</html>
