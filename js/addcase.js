@@ -94,3 +94,9 @@ function fileChange(x){
             }   
         }
 }
+
+function download(){
+    url = baseURL + '/case/downloadcase?id=0'
+    // console.log(url)
+    window.location.href=url
+}

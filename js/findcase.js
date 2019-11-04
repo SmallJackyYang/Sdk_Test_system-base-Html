@@ -35,12 +35,8 @@ function makeTable(){
     queryParams : function(params){
         var stringstarttime = $("#datetimepicker1").find("input").val() + ' 00:00:00';
         var stringendtime = $("#datetimepicker2").find("input").val() + ' 23:59:59';
-        // console.log(stringstarttime);
-        // console.log(stringendtime);
         var starttime = new Date(stringstarttime).getTime();
         var endtime = new Date(stringendtime).getTime();
-        // console.log(starttime);
-        // console.log(endtime);
         var temp = {
             pageSize : params.pageSize,
             pageNumber : params.pageNumber,
@@ -107,19 +103,7 @@ function makeTable(){
         field : 'device_id',
         align:'center',
         // sortable : true
-    },
-    // {
-    //     title : 'Danaip地址',
-    //     field : 'dana_ip',
-    //     align:'center',
-    //     // sortable : true
-    // },
-    // {
-    //     title : 'sql执行语句',
-    //     field : 'dana_sql',
-    //     align:'center',
-    // },
-    {
+    },{
         title : '操作',
         field : 'id',
         align : 'center',
@@ -137,7 +121,7 @@ function makeTable(){
             else 
               return[
                 '<button id = "'+value+'" class="btn btn-warning" onclick="actioncase('+value+')" data-loading-text="执行中...">执行</button> &nbsp;&nbsp;',
-                '<a class="btn btn-info" href="http://192.168.90.52:8887/case/downloadcase?id='+value+'">下载</a> &nbsp;&nbsp;',
+                '<button class="btn btn-info" onclick="download('+value+')">下载</button> &nbsp;&nbsp;',
                 '<button class="btn btn-danger" onclick="deletecase('+value+')" >删除</button> &nbsp;&nbsp;',
                 '<button class="btn btn-primary" onclick="detail(\''+value+'\')" data-toggle="modal" data-target="#detail">查看执行结果</button> &nbsp;&nbsp',
                 // '<button class="btn btn-primary" onclick="actioncase('+value+')" >执行</button>'
@@ -327,20 +311,96 @@ function detail(caseid){
     data: {id:caseid},
     success: function(response,status,xhr){
                  if(response.code == 0){
-
-                        // alert('获取用例详情成功');
-                        console.log(response.data);
-                        $(response.data).each(
-                                // console.log(response.data)
-                            function(i,values){
-                                $("#tableble").append(
-                                    "<tr><td>&nbsp;&nbsp&nbsp;&nbsp"+values["id"]+"</td>"
-                                    +"<td>"+values["event"]+"</td>"
-                                    +"<td>&nbsp;&nbsp&nbsp;&nbsp"+values["case_param"]+"</td>"
-                                    +"<td>"+values["param_value"]+"</td>"
-                                    +"<td>"+values["param_result"]+"</td>"
-                                    +"<td>"+values["result"]+"</td></tr>"
-                                    );
+                        var id = 1;
+                        // alert("成功")
+                        $.each(response.data, function(property,values){
+                                length = values.length
+                                data = values
+                                $.each(data, function(property,values){
+                                    // console.log(property)
+                                    // console.log(values)
+                                    if (property == 0) {
+                                        var result = values["result"]
+                                        if (result == 'failed') {
+                                            result =  '失败';
+                                            $("#tableble").append(
+                                            "<tr><td style='text-align:center'>"+id+"</td>"
+                                            +"<td style='vertical-align:middle;text-align:center' align='center' rowspan=\""+length+"\">"+values["event"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["case_param"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_value"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_result"]+"</td>"
+                                            +"<td style='color:#B22222;text-align:center'>"+result+"</td></tr>"
+                                            );      
+                                        }
+                                        else
+                                        {
+                                            result = '通过';
+                                            $("#tableble").append(
+                                            "<tr><td style='text-align:center'>"+id+"</td>"
+                                            +"<td style='vertical-align:middle;text-align:center' align='center' rowspan=\""+length+"\">"+values["event"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["case_param"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_value"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_result"]+"</td>"
+                                            +"<td style='color:#008000;text-align:center'>"+result+"</td></tr>"
+                                            )
+                                        };
+                                        id +=1
+                                    }
+                                    else{
+                                       var result = values["result"]
+                                        if (result == 'failed') {
+                                            result =  '失败';
+                                            $("#tableble").append(
+                                            "<tr><td style='text-align:center'>"+id+"</td>"
+                                            // +"<td style='vertical-align:middle;text-align:center' align='center' rowspan=\""+length+"\">"+values["event"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["case_param"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_value"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_result"]+"</td>"
+                                            +"<td style='color:#B22222;text-align:center'>"+result+"</td></tr>"
+                                            );      
+                                        }
+                                        else
+                                        {
+                                            result = '通过';
+                                            $("#tableble").append(
+                                            "<tr><td style='text-align:center'>"+id+"</td>"
+                                            // +"<td style='vertical-align:middle;text-align:center' align='center' rowspan=\""+length+"\">"+values["event"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["case_param"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_value"]+"</td>"
+                                            +"<td style='text-align:center'>"+values["param_result"]+"</td>"
+                                            +"<td style='color:#008000;text-align:center'>"+result+"</td></tr>"
+                                            )
+                                        };
+                                        id +=1
+                                    }
+                                });
+                    
+                                // var result = values["result"]
+                                // if (result == 'failed') {
+                                //     result =  '失败';
+                                //     $("#tableble").append(
+                                //     "<tr><td>&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp;"+id+"</td>"
+                                //     +"<td ro>"+values["event"]+"</td>"
+                                //     +"<td>&nbsp;&nbsp&nbsp;&nbsp"+values["case_param"]+"</td>"
+                                //     +"<td>"+values["param_value"]+"</td>"
+                                //     +"<td>"+values["param_result"]+"</td>"
+                                //     +"<td style='color:#B22222'>"+result+"</td></tr>"
+                                //     );      
+                                // }
+                                // else
+                                // {
+                                //     result = '通过';
+                                //     $("#tableble").append(
+                                //     "<tr><td>&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp;"+id+"</td>"
+                                //     +"<td>"+values["event"]+"</td>"
+                                //     +"<td>&nbsp;&nbsp&nbsp;&nbsp"+values["case_param"]+"</td>"
+                                //     +"<td>"+values["param_value"]+"</td>"
+                                //     +"<td>"+values["param_result"]+"</td>"
+                                //     +"<td style='color:#008000'>"+result+"</td></tr>"
+                                //     );
+                    
+                                // }
+                                // id += 1
                             }
                             );
                         }
@@ -359,4 +419,10 @@ function detail(caseid){
 
 function cleartable(){
     $("#tableble").html("");
+}
+
+function download(id){
+    url = baseURL + '/case/downloadcase?id=' + id
+    // console.log(url)
+    window.location.href=url
 }
