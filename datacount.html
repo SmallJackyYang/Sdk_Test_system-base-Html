@@ -3,24 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>数据统计界面</title>
-<link href="css/bootstrap.css" rel="stylesheet">
- <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-<link rel="stylesheet" href="css/bootstrap-table.css">
-<link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.css">
-<script src="js/popper.min.js"></script>
-<!-- <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.js"></script> -->
-<script src="js/jquery-3.4.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-<script src="js/bootstrap-table.js"></script>
-<script src="js/bootstrap-table-zh-CN.js"></script>
-<script src="js/moment-with-locales.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script>
-<script src="js/bootstrap-dialog.js"></script>
-<script src="js/echarts.js"></script>
-<script src="js/setting.js"></script>
-<script src="js/count.js"></script>
+<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap/bootstrap-datetimepicker.css">
+<link rel="logo icon" href="image/logo2.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-dialog.css">
+<script src="js/bootstrap/popper.min.js"></script>
+<script src="js/others/jquery-3.4.1.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/bootstrap/moment-with-locales.js"></script>
+<script src="js/bootstrap/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap/bootstrap-dialog.js"></script>
+<script src="js/others/echarts.js"></script>
+<script src="js/sdkcode/setting.js"></script>
+<script src="js/sdkcode/count.js"></script>
 
 
 <style type="text/css">
@@ -30,28 +25,25 @@
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <p class="navbar-brand" href="javascript:;"><strong>测试系统</strong>
-                        <!-- <img src="image/wangwang.jpg" height="100%" /> -->
-                    </p>
-                </div>
+               <div class="navbar-header" style="margin-left: 5px">
+                <img src="image/logo3.jpg" style="width: 25px;height:25px;margin-top: 11px" />                
+              </div>
+              <div class="navbar-header" style="margin-left: 10px">
+                <p class="text-muted" style="margin-top: 10px;font-size: 150%"><strong>测试系统</strong></p>
+              </div>
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="icon-bar" href="#">SDK数据测试</a>
                         </li>
-                        <!-- <li><a href="#">分类管理</a> -->
-                       <!--  </li>
-                        <li><a href="#">城市管理</a>
-                        </li>
-                        <li><a href="#">商品管理</a>
-                        </li>
-                        <li><a href="#">订单管理</a>
-                        </li> -->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>欢迎您,admin</a>
+                        <li><a>欢迎您,
+                          <script language="javascript">
+                          document.write(localStorage.getItem("nickname"))
+                          </script></a>
+                        </a>
                         </li>
-                        <li><a href="#">安全退出</a>
+                        <li><a href="#" onclick="logoutsystem()">安全退出</a>
                         </li>
                     </ul>
                 </div>
@@ -63,30 +55,21 @@
             <div class="row">
                 <div class="col-sm-2">
                     <a href="./upcase.html" class="list-group-item">
-                      <span class="glyphicon glyphicon-align-left"></span>用例上传
+                      <span class="glyphicon glyphicon-align-left"></span>&nbsp&nbsp用例上传
                     </a>
                     <a href="./findcase.html" class="list-group-item">
                     <!-- 小图标样式设置 -->
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>用例管理</a>
+                    </span>&nbsp&nbsp用例管理</a>
                     <a href="./datacount.html" class="list-group-item active">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>数据统计</a>
-                  <!--   <a href="#" class="list-group-item">
+                    </span>&nbsp&nbsp数据统计</a>
+                    <a href="./sqluse.html" class="list-group-item">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户消费</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户增加</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户删除</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户注销</a> -->
+                    </span>&nbsp&nbspSQL查询</a>
                     <a href="#" class="list-group-item">
                         <span class="glyphicon glyphicon-user" aria-hidden="true">
-                    </span>个人设置</a>
+                    </span>&nbsp&nbsp个人设置</a>
                 </div>
                 <!--左边菜单栏-->
                 <div class="col-sm-10">
@@ -140,7 +123,7 @@
                                         </div>  
                                     </div>
                                     <div class="form-group" style="margin-left: 35px;padding-bottom">
-                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn">查询</button>
+                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn" onclick="GetSuccessandFail()">查询</button>
                                     </div>   
                                 </form>
                         </div>
@@ -193,7 +176,7 @@
                                         </div>  
                                     </div>
                                     <div class="form-group" style="margin-left: 35px">
-                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn2">查询</button>
+                                        <button type="button" class="btn btn-primary btn-large" id="submitbtn2" onclick="Getactiontimes()">查询</button>
                                     </div>   
                                 </form>
                         </div>
@@ -208,10 +191,10 @@
        		</div>
     	</div>
           <!-- 底部页脚部分 -->
- <div class="footer">
-     <p class="text-center">
-         2019 &copy; Copyright By Jacky.
-     </p>
+ <!-- <div class="footer navbar-fixed-bottom">
+     <p style="font-family:'微软雅黑';font-weight: bold;" class="text-center">
+         2019 &copy; Copyright By JackyYang.
+     </p> -->
  </div>
 </body>
 </html>

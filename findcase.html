@@ -3,55 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>用例管理界面</title>
-  <link href="css/bootstrap.css" rel="stylesheet">
- <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="css/bootstrap-table.css">
-  <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.css">
-  <script src="js/popper.min.js"></script>
-  <!-- <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.js"></script> -->
-  <script src="js/jquery-3.4.1.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-  <script src="js/bootstrap-table.js"></script>
-  <script src="js/bootstrap-table-zh-CN.js"></script>
-  <script src="js/moment-with-locales.js"></script>
-  <script src="js/bootstrap-datetimepicker.js"></script>
-  <script src="js/bootstrap-dialog.js"></script>
-  <script src="js/setting.js"></script>
-  <script src="js/findcase.js"></script>
-
-
-
+  <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap-table.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-dialog.css">
+  <link rel="logo icon" href="image/logo2.ico" type="image/x-icon" />
+  <script src="js/bootstrap/popper.min.js"></script>
+  <script src="js/others/jquery-3.4.1.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/bootstrap/bootstrap-table.js"></script>
+  <script src="js/bootstrap/bootstrap-table-zh-CN.js"></script>
+  <script src="js/bootstrap/moment-with-locales.js"></script>
+  <script src="js/bootstrap/bootstrap-datetimepicker.js"></script>
+  <script src="js/bootstrap/bootstrap-dialog.js"></script>
+  <script src="js/sdkcode/setting.js"></script>
+  <script src="js/sdkcode/findcase.js"></script>
   <style type="text/css">
     html,body{width:100%;height:100%}
+    #mytable > thead th {
+    padding: 0;
+    margin: 0;
+    background-color: #d9edf7;
+     }
   </style>
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <p class="navbar-brand" href="javascript:;"><strong>测试系统</strong>
-                        <!-- <img src="image/wangwang.jpg" height="100%" /> -->
-                    </p>
-                </div>
+              <div class="navbar-header" style="margin-left: 5px">
+                <img src="image/logo3.jpg" style="width: 25px;height:25px;margin-top: 11px" />                
+              </div>
+              <div class="navbar-header" style="margin-left: 10px">
+                <p class="text-muted" style="margin-top: 10px;font-size: 150%"><strong>测试系统</strong></p>
+              </div>
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a class="icon-bar" href="#">SDK数据测试</a>
                         </li>
-                        <!-- <li><a href="#">分类管理</a> -->
-                       <!--  </li>
-                        <li><a href="#">城市管理</a>
-                        </li>
-                        <li><a href="#">商品管理</a>
-                        </li>
-                        <li><a href="#">订单管理</a>
-                        </li> -->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>欢迎您,admin</a>
+                        <li><a>欢迎您,
+                          <script language="javascript">
+                          document.write(localStorage.getItem("nickname"))
+                          </script></a>
+                        </a>
                         </li>
-                        <li><a href="#">安全退出</a>
+                        <li><a href="#" onclick="logoutsystem()">安全退出</a>
                         </li>
                     </ul>
                 </div>
@@ -63,39 +60,38 @@
             <div class="row">
                 <div class="col-sm-2">
                     <a href="./upcase.html" class="list-group-item">
-                      <span class="glyphicon glyphicon-align-left"></span>用例上传
+                      <span class="glyphicon glyphicon-align-left"></span>&nbsp&nbsp用例上传
                     </a>
                     <a href="./findcase.html" class="list-group-item active">
                     <!-- 小图标样式设置 -->
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>用例管理</a>
+                    </span>&nbsp&nbsp用例管理</a>
                     <a href="./datacount.html" class="list-group-item">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>数据统计</a>
-                  <!--   <a href="#" class="list-group-item">
+                    </span>&nbsp&nbsp数据统计</a>
+                    <a href="./sqluse.html" class="list-group-item">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户消费</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户增加</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户删除</a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-align-left" aria-hidden="true">
-                    </span>VIP客户注销</a> -->
+                    </span>&nbsp&nbspSQL查询</a>
                     <a href="#" class="list-group-item">
                         <span class="glyphicon glyphicon-user" aria-hidden="true">
-                    </span>个人设置</a>
+                    </span>&nbsp&nbsp个人设置</a>
                 </div>
                 <!--左边菜单栏-->
                 <div class="col-sm-10">
-		        	<div class="jumbotron">
-		  
+		        	<div class="jumbotron" style="padding-top: 5px;padding-bottom: 5px;">
+                 <div class="page-header">
+                  <h2 class="text-info" style="margin-top: 0px;font-weight: bold;">欢迎来到用例管理界面<small>SDK数据比对</small>
+                  </h2>
+                  </div>
+                        <p class="text-warning" style="font-size: 120%;">
+                          使用方式：下方的表格中为已经上传的用例 ，直接点击用例后方操作栏中的按钮即可直接执行对应的功能<br><br>
+                          查询条件支持模糊查询，维度为 名称、 SDK版本号、设备号、 开始时间与结束时间<br><br>
+                          表格可以调整每页的展示记录数量<br><br>
+                          有问题可以反馈哟~<br><br>
+                        </p>
+				
 				        <p>
-				        </p>
-				        <p>
-				           <a class="btn btn-primary btn-large" href="#">Learn more</a>
+				           <a class="btn btn-info btn-large" href="./upcase.html">点击此处跳转用例上传界面</a>
 				        </p>
 		        </div>
                     <div class="panel-body" style="padding-bottom:0px;padding-left: 0px;padding-right: 0px;">
@@ -103,19 +99,19 @@
 				            <div class="panel-heading" style="color: SteelBlue;font-size: 120%;font-weight: bold;">查询条件</div>
 								<form class="form-inline" role="form" id="submitform">
 									<div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
-										<label for="f1">用例名称</label>
+										<label style="font-size: 110%" for="f1">用例名称</label>
 										<input type="text" id="serchtitle" class="form-control" style="width: 150px" placeholder="请输入要搜索的用例名称">	
 									</div>
 									<div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
-										<label for="f2">SDK版本</label>
+										<label style="font-size: 110%" for="f2">SDK版本</label>
 										<input type="text" id="serchsdk" class="form-control" style="width: 180px" placeholder="请输入要搜索的SDK版本">	
 									</div>
 									<div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">
-										<label for="f3">设备号</label>
+										<label style="font-size: 110%" for="f3">设备号</label>
 										<input type="text" id="serchdevice" class="form-control" style="width: 280px;" placeholder="请输入要搜索的设备号">	
 									</div>
 									<div class="form-group" style="margin-top: 25px;margin-left: 10px;margin-bottom: 25px;">  
-	                                    <label>选择开始时间：</label>  
+	                                    <label style="font-size: 110%" >选择开始时间：</label>  
 	                                    <!--指定 date标记-->  
 	                                    <div class='input-group date' id='datetimepicker1'>  
 	                                        <input type='text' class="form-control" style="width: 150px"/>  
@@ -125,7 +121,7 @@
 	                                    </div>  
                                 	</div>
                                 	<div class="form-group">  
-	                                    <label>选择结束时间：</label>  
+	                                    <label style="font-size: 110%" >选择结束时间：</label>  
 	                                    <!--指定 date标记-->  
 	                                    <div class='input-group date' id='datetimepicker2'>  
 	                                        <input type='text' class="form-control" style="width: 150px"/>  
@@ -135,12 +131,12 @@
 	                                    </div>  
                                 	</div>
                                 	<div class="form-group" style="margin-left: 35px">
-                                		<button type="button" class="btn btn-primary btn-large" id="submitbtn">查询</button>
+                                		<button type="button" class="btn btn-primary btn-large" id="submitbtn" onclick="makeTable()">查询</button>
                                 	</div>   
 								</form>
 						</div>
 					</div>
-                    <table id="mytable" class="table table-hover table-bordered"></table>
+                    <table id="mytable" class="table table-striped table-hover"></table>
             	</div>
        		</div>
     	</div>
@@ -166,10 +162,6 @@
                                 <label for="InputCode">Device_id</label>
                                 <input type="text" class="form-control" name="设备ID" id="updatedevice" placeholder="在此更改输入设备ID">
                             </div>
-                        <!--     <div class="form-group">
-                                <label for="InputCode">Dana_sql</label>
-                                <input type="text" class="form-control" name="sql语句" placeholder="在此输入sal语句">
-                            </div> -->
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
@@ -187,11 +179,9 @@
 
       <div id="detail" class="modal inmodal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
-            <!-- <form action="{{ url_for("case_app.case_add") }}" role="form" method="post" > -->
+          
                 <div class="modal-content">
                     <div class="modal-header">
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-                            <!-- <span aria-hidden="true">×</span></button> -->
                         <h4 class="modal-title" style="font-weight: bold;">用例详情</h4>
                     </div>
                     <div class="modal-body">
@@ -200,7 +190,7 @@
                                 <table class="table table-bordered table-striped"  id="btable">
                                     <thead>
                                     <tr>
-                                        <th class="text-center" style="font-size: 120%">用例ID</th>
+                                        <th class="text-center" style="font-size: 120%">ID</th>
                                         <th class="text-center" style="font-size: 120%">事件名</th>
                                         <th class="text-center" style="font-size: 120%">参数名称</th>
                                         <th class="text-center" style="font-size: 120%">预期值</th>
@@ -225,17 +215,13 @@
                         </div>
                     </div>
                 </div>
-            <!-- </form> -->
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-        <!-- /.modal -->
+        </div> 
       </div>
           <!-- 底部页脚部分 -->
- <div class="footer">
-     <p class="text-center">
-         2019 &copy; Copyright By Jacky.
-     </p>
+ <!-- <div class="footer navbar-fixed-bottom">
+     <p style="font-family:'微软雅黑';font-weight: bold;" class="text-center">
+         2019 &copy; Copyright By JackyYang.
+     </p> -->
  </div>
 </body>
 </html>

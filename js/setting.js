@@ -1,1 +1,0 @@
-window.baseURL = 'http://xxx.xxx.xxx.xx:xxxx'
