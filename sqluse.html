@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/codemirror/show-hint.css">
   <link rel="stylesheet" type="text/css" href="css/codemirror/foldgutter.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-dialog.css">
-  <link rel="logo icon" href="image/logo2.ico" type="image/x-icon" />
+  <link rel="logo icon" href="image/logo.ico" type="image/x-icon" />
   <script src="js/bootstrap/popper.min.js"></script>
   <script src="js/others/jquery-3.4.1.js"></script>
 <!--   <script src="js/others/jquery.table2excel.js"></script> -->
@@ -87,6 +87,9 @@
                     <a href="./sqluse.html" class="list-group-item active">
                         <span class="glyphicon glyphicon-align-left" aria-hidden="true">
                     </span>&nbsp&nbspSQL查询</a>
+					<a href="./ocr.html" class="list-group-item">
+					  <span class="glyphicon glyphicon-align-left"></span>&nbsp&nbsp图片识别
+					</a>
                     <a href="#" class="list-group-item">
                         <span class="glyphicon glyphicon-user" aria-hidden="true">
                     </span>&nbsp&nbsp个人设置</a>
@@ -101,19 +104,19 @@
               <button type="button" class="btn btn-primary" id="submitbtn" onclick="sqlfind()" style="width: 225px">查 询</button>
           </div>
           <div class="btn-group" style="margin-top: 30px">
-              <button type="button" id="exportExcel" class="btn btn-primary " onclick="tablesToExcel(['resulttable'], ['sheet1'], 'Results.xls', 'Excel')" style="width: 225px">一键导出表格</button>
+              <button type="button" class="btn btn-primary hidden" id="exportExcel" onclick="tablesToExcel(['resulttable'], ['sheet1'], 'Results.xls', 'Excel')" style="width: 225px">一键导出表格</button>
           </div>
         </div>
         <div class="col-md-10 column">
           <label style="font-size: 120%;" class="text-info" for="title">SQL语句（可不写数据库名，只写表名)
-              <button type="button" class="btn btn-primary" id="submitbtn" onclick="sqlnameinputdialog()" style="width: 110px;margin-left:740px">保存</button>
-              <button type="button" class="btn btn-primary" onclick="mysavesql()" style="width: 110px;">我的查询</button>
+              <button type="button" class="btn btn-primary" id="submitbtn" onclick="sqlnameinputdialog()" style="width: 115px;margin-left:740px">保存</button>
+              <button type="button" class="btn btn-primary" onclick="mysavesql()" style="width: 115px;">我的查询</button>
           </label>
           <textarea style="font-size: 120%;margin-top: 10px;" class="form-control" name="sqlfind" id="sql" style="width:100%;height:80px;"></textarea>
         </div>
       </div>
-        <div style="margin-top: 15px;overflow-x: auto;" class="col-md-12 column">
-            <table id="resulttable" class="table table-striped" style="white-space: nowrap;overflow-y:scroll;">
+        <div style="margin-top: 15px;height: 650px;overflow: scroll;" class="col-md-12 column">
+            <table id="resulttable" class="table table-striped" style="white-space: nowrap">
               <thead>
                 <tr id ="mytable1">
 
